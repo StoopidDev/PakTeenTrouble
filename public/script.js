@@ -17,8 +17,10 @@ const topCount    = document.getElementById('top-count');
 const topClass    = document.getElementById('top-class');
 const face        = document.getElementById('face');
 const clicker     = document.getElementById('clicker');
-const lbBar       = document.getElementById('lb-bar') || document.querySelector('.lb-bar');
+const lbSidebar   = document.getElementById('lb-sidebar');
+const lbOverlay   = document.getElementById('lb-overlay');
 const lbToggle    = document.getElementById('lb-toggle');
+const lbClose     = document.getElementById('lb-close');
 const lbList      = document.getElementById('lb-list');
 const grid        = document.getElementById('classroom-grid');
 
@@ -45,10 +47,13 @@ function enterGame(cls) {
   setInterval(fetchLeaderboard, 3000);
 }
 
-// Leaderboard toggle
-lbToggle.addEventListener('click', () => {
-  document.querySelector('.lb-bar').classList.toggle('open');
-});
+// Leaderboard sidebar open / close
+function openLb()  { lbSidebar.classList.add('open');    lbOverlay.classList.add('visible'); }
+function closeLb() { lbSidebar.classList.remove('open'); lbOverlay.classList.remove('visible'); }
+
+lbToggle.addEventListener('click',   openLb);
+lbClose.addEventListener('click',    closeLb);
+lbOverlay.addEventListener('click',  closeLb);
 
 // Preload both images so the swap is instant
 const preAfter = new Image(); preAfter.src = '/assets/afterclick.jpg';

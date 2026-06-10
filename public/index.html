@@ -30,14 +30,21 @@
       <img id="face" src="/assets/beforeclick.jpg" alt="Teen's Trouble" draggable="false" />
     </div>
 
-    <!-- Leaderboard bar at bottom (like Popcat) -->
-    <div class="lb-bar">
-      <div class="lb-toggle" id="lb-toggle">LEADERBOARD</div>
-      <div class="lb-panel" id="lb-panel">
-        <ol id="lb-list"></ol>
-      </div>
-    </div>
+  </div>
 
+  <!-- Sidebar tab button (always visible on right edge) -->
+  <button id="lb-toggle" class="lb-tab">LEADERBOARD</button>
+
+  <!-- Overlay to close sidebar by tapping outside -->
+  <div id="lb-overlay" class="lb-overlay"></div>
+
+  <!-- Leaderboard sidebar -->
+  <div id="lb-sidebar" class="lb-sidebar">
+    <div class="lb-sidebar-head">
+      <span>LEADERBOARD</span>
+      <button id="lb-close" class="lb-close-btn">X</button>
+    </div>
+    <ol id="lb-list"></ol>
   </div>
 
   <script src="script.js"></script>
