@@ -96,6 +96,7 @@ function handleClick(e) {
   myCount++;
   topCount.textContent = myCount.toLocaleString();
   pendingClicks++;
+  // debounce flush — fires 300ms after last click stops
   clearTimeout(flushTimer);
   flushTimer = setTimeout(flush, 300);
 }
@@ -105,15 +106,24 @@ async function flush() {
   const n = pendingClicks;
   pendingClicks = 0;
   try {
-    await fetch('/api/click', {
+    const res  = await fetch('/api/click', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ classroom: myClass, amount: n })
     });
+    const data = await res.json();
+    // Correct local count to whatever server confirmed
+    if (data.count !== undefined) {
+      myCount = data.count;
+      topCount.textContent = myCount.toLocaleString();
+    }
   } catch (_) {
-    pendingClicks += n;
+    pendingClicks += n; // re-queue on failure
   }
 }
+
+// Hard flush every 1s regardless of clicking — prevents clicks piling up forever
+setInterval(flush, 1000);
 
 async function fetchLeaderboard() {
   try {
@@ -125,7 +135,12 @@ async function fetchLeaderboard() {
 
 function renderLeaderboard(data) {
   const mine = data.find(r => r.classroom === myClass);
-  if (mine && mine.count > myCount) {
+  if (mine && pendingClicks === 0) {
+    // No pending clicks — server is authoritative, always sync
+    myCount = mine.count;
+    topCount.textContent = myCount.toLocaleString();
+  } else if (mine && mine.count > myCount) {
+    // Still clicking — only sync up (don't jump backward mid-click)
     myCount = mine.count;
     topCount.textContent = myCount.toLocaleString();
   }

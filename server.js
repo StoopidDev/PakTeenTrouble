@@ -52,7 +52,7 @@ app.post('/api/click', (req, res) => {
   if (!CLASSROOMS.includes(classroom)) {
     return res.status(400).json({ error: 'Invalid classroom' });
   }
-  const n = Math.min(Math.max(parseInt(amount) || 1, 1), 100);
+  const n = Math.max(parseInt(amount) || 1, 1);
   db = loadData();
   db[classroom] = (db[classroom] || 0) + n;
   saveData(db);
