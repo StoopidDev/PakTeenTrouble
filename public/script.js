@@ -50,10 +50,20 @@ lbToggle.addEventListener('click', () => {
   document.querySelector('.lb-bar').classList.toggle('open');
 });
 
-// Click handler
-clicker.addEventListener('mousedown', handleClick);
+// Preload both images so the swap is instant
+const preAfter = new Image(); preAfter.src = '/assets/afterclick.jpg';
+
+// Click handler — guard against touchstart + mousedown double-fire on mobile
+let lastTouchTime = 0;
+
+clicker.addEventListener('mousedown', e => {
+  if (Date.now() - lastTouchTime < 500) return;
+  handleClick(e);
+});
+
 clicker.addEventListener('touchstart', e => {
   e.preventDefault();
+  lastTouchTime = Date.now();
   handleClick(e.touches[0]);
 }, { passive: false });
 
