@@ -1,0 +1,12 @@
+{
+  "name": "teens-trouble",
+  "version": "1.0.0",
+  "description": "Teen's Trouble - School President Clicker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}

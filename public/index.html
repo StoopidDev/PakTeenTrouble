@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teen's Trouble — เบอร์ 3</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-screen">
+    <div class="login-box">
+      <img src="/assets/logoandtheme.jpg" alt="Teen's Trouble" class="login-logo" />
+      <p class="login-sub">เลือกห้องเรียนของคุณ</p>
+      <div class="classroom-grid" id="classroom-grid"></div>
+    </div>
+  </div>
+
+  <!-- GAME -->
+  <div id="game-screen" class="hidden">
+
+    <div class="top-bar">
+      <img src="/assets/logoandtheme.jpg" alt="Teen's Trouble" class="top-logo" />
+      <div class="top-count" id="top-count">0</div>
+      <div class="top-class" id="top-class"></div>
+    </div>
+
+    <div class="clicker" id="clicker">
+      <img id="face" src="/assets/beforeclick.jpg" alt="Teen's Trouble" draggable="false" />
+    </div>
+
+    <!-- Leaderboard bar at bottom (like Popcat) -->
+    <div class="lb-bar">
+      <div class="lb-toggle" id="lb-toggle">LEADERBOARD</div>
+      <div class="lb-panel" id="lb-panel">
+        <ol id="lb-list"></ol>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
