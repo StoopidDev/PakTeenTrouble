@@ -188,29 +188,27 @@ body {
 
 /* ===== LEADERBOARD SIDEBAR ===== */
 
-/* Tab button pinned to right edge */
-.lb-tab {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--blue);
+/* Leaderboard button inside the top bar */
+.lb-header-btn {
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.5);
   color: var(--white);
-  border: none;
-  padding: 14px 7px;
   font-family: 'Kanit', sans-serif;
-  font-size: .7rem;
+  font-size: .8rem;
   font-weight: 900;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  border-radius: 8px 0 0 8px;
-  z-index: 300;
-  box-shadow: -2px 0 10px rgba(0,0,0,.18);
-  transition: background .15s;
+  transition: background .12s, border-color .12s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.lb-tab:hover { background: var(--blue2); }
+.lb-header-btn:hover,
+.lb-header-btn:active {
+  background: rgba(255,255,255,.28);
+  border-color: var(--white);
+}
 
 /* Overlay dims background when sidebar is open */
 .lb-overlay {
