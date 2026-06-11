@@ -20,17 +20,23 @@ body {
   user-select: none;
 }
 
+/* Allow login screen to scroll; game screen stays locked */
+body:has(#login-screen:not(.hidden)) {
+  overflow: auto;
+}
+
 .hidden { display: none !important; }
 
 /* ===== LOGIN ===== */
 #login-screen {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background: var(--white);
   overflow-y: auto;
-  padding: 24px;
+  padding: 32px 24px 40px;
 }
 
 .login-box {
@@ -76,6 +82,18 @@ body {
   background: var(--blue);
   color: var(--white);
   transform: scale(1.06);
+}
+
+.cls-btn.teacher-btn {
+  grid-column: 1 / -1;
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--dark);
+  font-size: 1.05rem;
+  padding: 14px 4px;
+}
+.cls-btn.teacher-btn:hover, .cls-btn.teacher-btn:active {
+  background: var(--dark);
 }
 
 /* ===== GAME ===== */

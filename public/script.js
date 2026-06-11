@@ -1,9 +1,14 @@
 const CLASSROOMS = [
+  'Teacher',
+  '4/1','4/2','4/3','4/4','4/5','4/6',
+  '5/1','5/2','5/3','5/4','5/5','5/6',
+  '6/1','6/2','6/3','6/4','6/5','6/6',
   '7/1','7/2','7/3','7/4',
   '8/1','8/2','8/3','8/4',
   '9/1','9/2','9/3','9/4',
   '10/1','10/2','10/3','10/4',
-  '11/1','11/2'
+  '11/1','11/2',
+  '12/1','12/2','12/3','12/4'
 ];
 
 let myClass       = null;
@@ -27,8 +32,8 @@ const grid        = document.getElementById('classroom-grid');
 // Build classroom buttons
 CLASSROOMS.forEach(cls => {
   const btn = document.createElement('button');
-  btn.className = 'cls-btn';
-  btn.textContent = cls;
+  btn.className = cls === 'Teacher' ? 'cls-btn teacher-btn' : 'cls-btn';
+  btn.textContent = cls === 'Teacher' ? 'ครู / Teacher' : cls;
   btn.addEventListener('click', () => enterGame(cls));
   grid.appendChild(btn);
 });
@@ -40,7 +45,7 @@ if (saved && CLASSROOMS.includes(saved)) enterGame(saved);
 function enterGame(cls) {
   myClass = cls;
   sessionStorage.setItem('myClass', cls);
-  topClass.textContent = 'ห้อง ' + cls;
+  topClass.textContent = cls === 'Teacher' ? 'ครู' : 'ห้อง ' + cls;
   loginScreen.classList.add('hidden');
   gameScreen.classList.remove('hidden');
   fetchLeaderboard();
